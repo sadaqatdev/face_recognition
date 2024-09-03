@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:camera/camera.dart';
 import 'package:face_recognition/face_auth/face_recognition/camera_page.dart';
 import 'package:face_recognition/utils/local_db.dart';
-import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 // import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';

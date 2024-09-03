@@ -20,8 +20,7 @@ class FaceScanScreen extends StatefulWidget {
   final ScanType scanType;
 
   const FaceScanScreen(
-      {Key? key, required this.cameraType, required this.scanType})
-      : super(key: key);
+      {super.key, required this.cameraType, required this.scanType});
 
   @override
   _FaceScanScreenState createState() => _FaceScanScreenState();
@@ -97,24 +96,24 @@ class _FaceScanScreenState extends State<FaceScanScreen> {
   }
 
   Future<void> detectFacesFromImage(CameraImage image) async {
-    var _firebaseImageMetadata = InputImageMetadata(
+    var firebaseImageMetadata = InputImageMetadata(
         rotation: rotationIntToImageRotation(
             _cameraController.description.sensorOrientation),
         format: InputImageFormat.bgra8888,
         size: Size(image.width.toDouble(), image.height.toDouble()),
         bytesPerRow: image.planes.first.bytesPerRow);
 
-    InputImage _firebaseVisionImage = InputImage.fromBytes(
+    InputImage firebaseVisionImage = InputImage.fromBytes(
       bytes: Uint8List.fromList(
         image.planes.fold(
             <int>[],
             (List<int> previousValue, element) =>
                 previousValue..addAll(element.bytes)),
       ),
-      metadata: _firebaseImageMetadata,
+      metadata: firebaseImageMetadata,
     );
 
-    var result = await _faceDetector.processImage(_firebaseVisionImage);
+    var result = await _faceDetector.processImage(firebaseVisionImage);
 
     if (result.isNotEmpty) {
       facesDetected = result;
